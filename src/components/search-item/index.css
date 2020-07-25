@@ -1,0 +1,12 @@
+.search-item {
+  text-decoration: none;
+  width: 100%;
+
+  position: relative;
+  background-color: white;
+  border: rgb(122, 122, 122) 1px solid;
+}
+
+.search-item a{
+  text-decoration: none;
+}
