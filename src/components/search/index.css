@@ -1,0 +1,37 @@
+.search-container {
+  
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  background: rgb(197, 73, 73);
+  
+}
+
+.search-box {
+  display: block;
+}
+
+.search-input {
+  border-radius: 1em;
+  border: 5px solid rgb(128, 128, 128);
+  line-height: 1.5em;
+  margin: 1em;
+}
+
+.search-item {
+  text-decoration: none;
+  width: 100%;
+
+  position: relative;
+  background-color: white;
+  border: rgb(122, 122, 122) 1px solid;
+}
+
+.search-item a{
+  text-decoration: none;
+}
+
+.search-items-list {
+  list-style-type: none;
+  margin: 0;
+}
