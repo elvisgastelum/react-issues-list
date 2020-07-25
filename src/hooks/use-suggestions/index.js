@@ -6,11 +6,9 @@ export const useSuggestions = (initialState) => {
   const list = useGithubIssuesList([]);
   const [searchResults, setSearchResults] = useState(initialState);
 
-
-
-  const newSearchResults = (e) => {
+  const newSearchResults = (value) => {
     setSearchResults(
-      searchIssues(e.target.value, list)
+      searchIssues(value, list)
     )
   }
 

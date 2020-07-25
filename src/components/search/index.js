@@ -7,6 +7,10 @@ import './index.css';
 export default function Search() {
   const [ searchResults, newSearchResults ] = useSuggestions([]);
 
+  const handleText = e => {
+    newSearchResults(e.target.value)
+  }
+
   return (
     <div className="search-container">
       <div className="search-box">
@@ -14,7 +18,7 @@ export default function Search() {
           type="text"
           placeholder="Search"
           className="search-input"
-          onChange={ newSearchResults }
+          onChange={ handleText }
         />
         <SearchItemsList items={ searchResults } />
       </div>
