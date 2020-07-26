@@ -1,7 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 
-export const useGithubIssuesList = (initialState) => {
-  const [list, setList] = useState(initialState)
+import { useSessionStorage } from '../use-session-storage';
+
+export const useGithubIssuesList = initialState => {
+  const [ list, setList ] = useSessionStorage("github-issue-list", initialState);
 
   useEffect(() => {
     async function fetchList() {
@@ -10,8 +12,10 @@ export const useGithubIssuesList = (initialState) => {
 
       setList(list);
     }
-    fetchList();
-  }, [])
+    if (list === initialState) {
+      fetchList();
+    }
+  }, [ setList, list, initialState ])
 
   return list;
 }

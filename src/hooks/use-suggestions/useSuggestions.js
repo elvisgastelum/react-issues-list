@@ -1,18 +1,32 @@
 import { useState } from 'react';
 
-import { useGithubIssuesList } from '../use-github-issues-list'
+import { useGithubIssuesList } from '../use-github-issues-list';
+import { useArrowKeys } from '../use-arrow-keys';
 
-export const useSuggestions = (initialState) => {
+export const useSuggestions = initialState => {
   const list = useGithubIssuesList([]);
-  const [searchResults, setSearchResults] = useState(initialState);
+  const [ searchResults, setSearchResults ] = useState(initialState);
+  const [  index, handleArrowKeys ] = useArrowKeys(0, handleEnter);
 
-  const newSearchResults = (value) => {
+  const newSearchResults = value => {
     setSearchResults(
       searchIssues(value, list)
     )
   }
 
-  return [ searchResults, newSearchResults ]
+  const setArrowKeys = (keyCode, element) => {
+    handleArrowKeys(keyCode, searchResults.length)
+  }
+
+  function handleEnter(){
+    const itemSelected = searchResults[index].html_url;
+
+    window.open(itemSelected);
+  }
+
+
+
+  return [ searchResults, newSearchResults, index, setArrowKeys ]
 };
 
 
@@ -22,23 +36,23 @@ function searchIssues(search, itemList){
 
 
   var rx = new RegExp(`([^"]*${search}[^"]*)`,'gi');
-  const listFiltered = itemList.filter(value => filterResults(value, rx))
+  const listFiltered = itemList.filter(item => filterResults(item, rx))
   const slicedList = listFiltered.slice(0, 5)
   return slicedList;
 }
 
-function filterResults(value, rx){
-  return matchResult(value.title, rx) || matchResult(value.labels, rx) || matchResult(value.body, rx)
+function filterResults({ title, labels, body }, rx){
+  return matchResult(title, rx) || matchResult(labels, rx) || matchResult(body, rx)
 }
 
-function matchResult(value, rx){
-  if (Array.isArray(value)) {
-    var result = value.filter(label => {
-      return String(label.name).match(rx)
+function matchResult(item, rx){
+  if (Array.isArray(item)) {
+    var result = item.filter( ({ name }) => {
+      return String(name).match(rx)
     })
 
     return result.length > 0 ? true : false
   }
 
-  return String(value).match(rx)
+  return String(item).match(rx)
 }

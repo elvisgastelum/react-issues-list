@@ -1,13 +1,15 @@
 import React from 'react';
+import SearchItemsList from '../search-items-list';
 
 import { useSuggestions } from '../../hooks/use-suggestions';
-import SearchItemsList from '../search-items-list';
 import './index.css';
 
 export default function Search() {
-  const [ searchResults, newSearchResults ] = useSuggestions([]);
+  const [ searchResults, newSearchResults, index, setArrowKeys ] = useSuggestions([]);
+
 
   const handleText = e => newSearchResults(e.target.value)
+  const handleArrowKeys = e => setArrowKeys(e.keyCode)
 
   return (
     <div className="search-container">
@@ -17,8 +19,9 @@ export default function Search() {
           placeholder="Search"
           className="search-input"
           onChange={ handleText }
+          onKeyDown= { handleArrowKeys }
         />
-        <SearchItemsList items={ searchResults } />
+      <SearchItemsList items={ searchResults } index={ index } />
       </div>
     </div>
   )
