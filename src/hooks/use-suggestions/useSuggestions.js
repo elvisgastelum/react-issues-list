@@ -4,8 +4,8 @@ import { useGithubIssuesList } from '../use-github-issues-list';
 import { useArrowKeys } from '../use-arrow-keys';
 import { searchIssues } from './searchIssues';
 
-export const useSuggestions = (initialState, mockList) => {
-  const list = mockList || useGithubIssuesList([]);
+export const useSuggestions = (initialState) => {
+  const list = useGithubIssuesList([]);
   const [ searchResults, setSearchResults ] = useState(initialState);
   const [  index, handleArrowKeys ] = useArrowKeys(0, handleEnter);
 
