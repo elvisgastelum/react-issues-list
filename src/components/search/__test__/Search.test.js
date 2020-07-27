@@ -25,9 +25,7 @@ describe('Test <Search /> component', () => {
       searchResults = searchIssues(value, data);
     }
     var index = 0;
-    const setArrowKeys = e => {
-      console.log(e);
-    }
+    const setArrowKeys = e => {}
     
     const wrapper = mount(
       <Search
@@ -48,9 +46,7 @@ describe('Test <Search /> component', () => {
       searchResults = searchIssues(value, data);
     }
     var index = 0;
-    const setArrowKeys = e => {
-      console.log(e);
-    }
+    const setArrowKeys = e => {}
       
     const wrapper = mount(
       <Search
@@ -84,9 +80,7 @@ describe('Test <Search /> component', () => {
       searchResults = searchIssues(value, data);
     }
     var index = 0;
-    const setArrowKeys = e => {
-      console.log(e);
-    }
+    const setArrowKeys = e => {}
       
     const wrapper = mount(
       <Search
@@ -120,9 +114,7 @@ describe('Test <Search /> component', () => {
       searchResults = searchIssues(value, data);
     }
     var index = 0;
-    const setArrowKeys = e => {
-      console.log(e);
-    }
+    const setArrowKeys = e => {}
       
     const wrapper = mount(
       <Search
@@ -155,9 +147,7 @@ describe('Test <Search /> component', () => {
       searchResults = searchIssues(value, data);
     }
     var index = 0;
-    const setArrowKeys = e => {
-      console.log(e);
-    }
+    const setArrowKeys = e => {}
       
     const wrapper = mount(
       <Search
@@ -195,7 +185,6 @@ describe('Test <Search /> component', () => {
       length = length - 1;
       switch (keyCode) {
         case key.DOWN:
-          console.log('key.DOWN press');
           if (index < length) {
             index++;
             break;
