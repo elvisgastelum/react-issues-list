@@ -2,9 +2,10 @@ import { useState } from 'react';
 
 import { useGithubIssuesList } from '../use-github-issues-list';
 import { useArrowKeys } from '../use-arrow-keys';
+import { searchIssues } from './searchIssues';
 
-export const useSuggestions = initialState => {
-  const list = useGithubIssuesList([]);
+export const useSuggestions = (initialState, mockList) => {
+  const list = mockList || useGithubIssuesList([]);
   const [ searchResults, setSearchResults ] = useState(initialState);
   const [  index, handleArrowKeys ] = useArrowKeys(0, handleEnter);
 
@@ -14,8 +15,12 @@ export const useSuggestions = initialState => {
     )
   }
 
-  const setArrowKeys = (keyCode, element) => {
-    handleArrowKeys(keyCode, searchResults.length)
+  const setArrowKeys = (keyCode, index) => {
+    if (index) {
+      handleArrowKeys(keyCode, index);  
+    } else {
+      handleArrowKeys(keyCode, searchResults.length);
+    }
   }
 
   function handleEnter(){
@@ -25,34 +30,8 @@ export const useSuggestions = initialState => {
   }
 
 
-
   return [ searchResults, newSearchResults, index, setArrowKeys ]
 };
 
 
-function searchIssues(search, itemList){
-  if(search === '' || itemList === [])
-    return [];
 
-
-  var rx = new RegExp(`([^"]*${search}[^"]*)`,'gi');
-  const listFiltered = itemList.filter(item => filterResults(item, rx))
-  const slicedList = listFiltered.slice(0, 5)
-  return slicedList;
-}
-
-function filterResults({ title, labels, body }, rx){
-  return matchResult(title, rx) || matchResult(labels, rx) || matchResult(body, rx)
-}
-
-function matchResult(item, rx){
-  if (Array.isArray(item)) {
-    var result = item.filter( ({ name }) => {
-      return String(name).match(rx)
-    })
-
-    return result.length > 0 ? true : false
-  }
-
-  return String(item).match(rx)
-}

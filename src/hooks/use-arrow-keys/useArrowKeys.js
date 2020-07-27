@@ -25,7 +25,11 @@ export const useArrowKeys = (initialState, fn) => {
       case key.ENTER:
         fn();
         break;
+      case key.MOUSE_EVENT:
+        setIndex(length);
+        break;
       default:
+        setIndex(0);
     }
   }
 

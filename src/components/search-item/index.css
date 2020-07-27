@@ -1,25 +1,29 @@
 .search-item {
   text-decoration: none;
   width: 100%;
-
   position: relative;
   background-color: white;
-  border: rgb(122, 122, 122) 1px solid;
   box-sizing: border-box;
   border: 1px solid #3D6AF2;
   box-shadow: 0 0 5px #3D6AF2;
   margin: 0 0 10px 0;
 }
 
-.search-item div a{
+.search-item a{
   text-decoration: none;
   color: #000000;
+  display: block;
+  padding: 0.5em;
 }
 
-.search-item div {
-  margin: 0.5em;
+.search-item:last-child {
+  margin: 0em;
 }
 
 .active{
-  background: gray;
+  background: #2B4CAD;
+}
+
+.active a{
+  color: #f0ffff;
 }
