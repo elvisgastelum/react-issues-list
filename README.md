@@ -11,6 +11,3 @@ Each result can be found through issue’s title, labels or description.
 
 ## Demo
 You can test this [here](https://issues.elvisgastelum.com/).
-
-
-[ADD] terraform infrastructure and README's
