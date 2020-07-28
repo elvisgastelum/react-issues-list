@@ -33,6 +33,7 @@
 }
 
 .search-box-logo {
+  min-height: 5em;
   max-height: 5em;
   align-self: flex-end;
   position: relative;
@@ -51,4 +52,49 @@
 .search-input:focus {
   outline: 0;
   border-radius: 5px 5px 0 0;
+}
+
+@media only screen and (max-width: 375px) {
+  .search-container {
+    font-size: 16px;
+  }
+
+  .search-elements {
+    width: 70%;
+  }
+
+  .search-title {
+    font-size: 1.5em;
+  }
+
+  .search-input {
+    line-height: 1.7em;
+    font-size: 1rem;
+    max-height: 2em;
+  }
+
+  .search-box-logo {
+    min-height: 4em;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+
+  .search-elements {
+    width: 60%;
+  }
+
+  .search-title {
+    font-size: 1.7em;
+  }
+
+  .search-input {
+    line-height: 2em;
+    font-size: 1rem;
+    max-height: 2em;
+  }
+
+  .search-box-logo {
+    min-height: 4em;
+  }
 }

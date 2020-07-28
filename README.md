@@ -12,4 +12,4 @@ The input and results are navigatable via keyboard shortcuts.
 Each result can be found through issue’s title, labels or description.
 
 ## Demo
-You can test this [here](https://issues.elvisgastelum.com/).
+You can watch a live demo of the component in this [link](https://issues.elvisgastelum.com/).

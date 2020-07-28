@@ -20,3 +20,19 @@
 .active{
   background: #cdcdce;
 }
+
+@media only screen and (max-width: 375px) {
+  
+  .search-item a{
+    font-size: small;
+  }
+
+}
+
+@media only screen and (max-width: 768px) {
+  
+  .search-item a{
+    font-size: medium;
+  }
+  
+}
