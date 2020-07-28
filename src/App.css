@@ -1,3 +1,11 @@
 .wrapper {
-  padding: 3em 5em;
+  /* background-image: url('./img/background.jpg'); */
+  background: url('./img/background.jpg');
+  background-size: cover;
+  height: 100vh;
+}
+
+.inactive{
+  background:linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('./img/background.jpg');
+  background-size: cover;
 }

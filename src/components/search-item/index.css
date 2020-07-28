@@ -4,9 +4,6 @@
   position: relative;
   background-color: white;
   box-sizing: border-box;
-  border: 1px solid #3D6AF2;
-  box-shadow: 0 0 5px #3D6AF2;
-  margin: 0 0 10px 0;
 }
 
 .search-item a{
@@ -17,13 +14,9 @@
 }
 
 .search-item:last-child {
-  margin: 0em;
+  border-radius: 0 0 10px 10px;
 }
 
 .active{
-  background: #2B4CAD;
-}
-
-.active a{
-  color: #f0ffff;
+  background: #cdcdce;
 }
