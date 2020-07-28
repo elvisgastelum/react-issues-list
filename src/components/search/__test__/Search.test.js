@@ -14,9 +14,6 @@ Enzyme.configure({
 })
 
 describe('Test <Search /> component', () => {
-
-  const initialMarkupHTML = '<div class="search-container"><div class="search-box"><input type="text" placeholder="Search" class="search-input"><div class="search-items-list"><ul></ul></div></div></div>';
-  const markupHTMLWithGoodProp = '<div class="search-container"><div class="search-box"><input type="text" placeholder="Search" class="search-input"><div class="search-items-list"><ul><li class="search-item active"><a target="_blank" rel="noopener noreferrer" href="https://github.com/facebook/react/issues/19362">Scheduler callback is only checked for null value and therefore throws when callback is undefined.</a></li><li class="search-item "><a target="_blank" rel="noopener noreferrer" href="https://github.com/facebook/react/pull/19349">fix(reset): set value tracker to default values after form reset</a></li><li class="search-item "><a target="_blank" rel="noopener noreferrer" href="https://github.com/facebook/react/issues/19020">Feature request: have Context.Provider throw error if missing `value` prop</a></li><li class="search-item "><a target="_blank" rel="noopener noreferrer" href="https://github.com/facebook/react/issues/18945">DevTools: Improve browser extension iframe support</a></li></ul></div></div></div>';
   
   test('should be render', async () => {
 
@@ -35,7 +32,7 @@ describe('Test <Search /> component', () => {
         setArrowKeys={setArrowKeys}
       />
     );
-    expect(wrapper.html()).toBe(initialMarkupHTML);
+
     expect(wrapper).toMatchSnapshot();
   });
 
@@ -56,8 +53,8 @@ describe('Test <Search /> component', () => {
         setArrowKeys={setArrowKeys}
       />
     );
-      
-    expect(wrapper.html()).toBe(initialMarkupHTML);
+    
+    const initialHTML = wrapper.html();
   
     act(() => {
       wrapper.find('input').simulate('change', { target: { value: 'good' } });
@@ -68,8 +65,11 @@ describe('Test <Search /> component', () => {
         searchResults
       })
     })
+
+    
   
-    expect(wrapper.html()).toBe(markupHTMLWithGoodProp);
+    expect(wrapper.html()).not.toBe(initialHTML);
+
     expect(wrapper).toMatchSnapshot();
   });
 
@@ -91,7 +91,7 @@ describe('Test <Search /> component', () => {
       />
     );
       
-    expect(wrapper.html()).toBe(initialMarkupHTML);
+    const initialHTML = wrapper.html();
   
     act(() => {
       wrapper.find('input').simulate('change', { target: { value: 'react' } });
@@ -103,6 +103,8 @@ describe('Test <Search /> component', () => {
       })
     })
 
+    expect(wrapper.html()).not.toBe(initialHTML);
+    
     expect(wrapper.find('ul').children().length).toBe(5);
     expect(wrapper).toMatchSnapshot();
   });
@@ -125,17 +127,20 @@ describe('Test <Search /> component', () => {
       />
     );
       
-    expect(wrapper.html()).toBe(initialMarkupHTML);
-  
+    const initialHTML = wrapper.html();
+    
     act(() => {
       wrapper.find('input').simulate('change', { target: { value: 'good first issue' } });
     })
-  
+    
     act(() => {
       wrapper.setProps({
         searchResults
       })
     })
+    
+    expect(wrapper.html()).not.toBe(initialHTML);
+
     expect(wrapper.find('ul').children().length).toBe(3);
     expect(wrapper).toMatchSnapshot();
   });
@@ -158,7 +163,7 @@ describe('Test <Search /> component', () => {
       />
     );
       
-    expect(wrapper.html()).toBe(initialMarkupHTML);
+    const initialHTML = wrapper.html();
   
     act(() => {
       wrapper.find('input').simulate('change', { target: { value: 'good first issue' } });
@@ -169,6 +174,9 @@ describe('Test <Search /> component', () => {
         searchResults
       })
     })
+
+    expect(wrapper.html()).not.toBe(initialHTML);
+
     expect(wrapper.find('li').first().hasClass('active')).toBe(true);
     expect(wrapper).toMatchSnapshot();
   });
@@ -222,8 +230,7 @@ describe('Test <Search /> component', () => {
       />
     );
       
-    expect(wrapper.html()).toBe(initialMarkupHTML);
-  
+    const initialHTML = wrapper.html();
     act(() => {
       wrapper.find('input').simulate('change', { target: { value: 'good first issue' } });
     })
@@ -239,12 +246,15 @@ describe('Test <Search /> component', () => {
     act(() => {
       wrapper.find('input').simulate('keydown', {keyCode: key.DOWN})
     })
-  
+    
     act(() => {
       wrapper.setProps({
         index
       })
     })
+    
+    expect(wrapper.html()).not.toBe(initialHTML);
+
     expect(wrapper.find('li').first().hasClass('active')).toBe(false);
     expect(wrapper.find('ul').childAt(1).hasClass('active')).toBe(true);
     expect(wrapper).toMatchSnapshot();
@@ -299,12 +309,12 @@ describe('Test <Search /> component', () => {
       />
     );
       
-    expect(wrapper.html()).toBe(initialMarkupHTML);
-  
+    const initialHTML = wrapper.html();
+    
     act(() => {
       wrapper.find('input').simulate('change', { target: { value: 'good first issue' } });
     })
-  
+    
     act(() => {
       wrapper.setProps({
         searchResults
@@ -316,12 +326,15 @@ describe('Test <Search /> component', () => {
     act(() => {
       wrapper.find('input').simulate('keydown', {keyCode: key.UP})
     })
-  
+    
     act(() => {
       wrapper.setProps({
         index
       })
     })
+    
+    expect(wrapper.html()).not.toBe(initialHTML);
+
     expect(wrapper.find('li').first().hasClass('active')).toBe(false);
     expect(wrapper.find('li').last().hasClass('active')).toBe(true);
     expect(wrapper).toMatchSnapshot();
