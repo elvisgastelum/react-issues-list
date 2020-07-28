@@ -1,7 +1,7 @@
 import React, { createRef } from 'react'
 
-import { useSuggestions } from './hooks/use-suggestions';
-import Search from './components/search';
+import { useSuggestions } from '../hooks/use-suggestions';
+import Search from '../components/search';
 
 import './App.css';
 
