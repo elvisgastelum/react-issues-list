@@ -6,6 +6,8 @@ import Search from '../components/search';
 import './App.css';
 
 export default function App() {
+
+  
   const [ searchResults, newSearchResults, index, setArrowKeys ] = useSuggestions([]);
 
   const wrapper = createRef();
