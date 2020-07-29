@@ -5,6 +5,12 @@ import SearchItemsList from '../search-items-list';
 import './index.css';
 import githubLogo from './img/github-logo.png';
 
+/**
+ * Render a search component with suggestions
+ *
+ * @param {{ newSearchResults: (value: string) => void, searchResults: [], index: number, setArrowKeys: (keyCode: number, index?: number) => void, handleFocus: (e: React.FocusEvent<HTMLInputElement>) => void, handleBlur: (e: React.FocusEvent<HTMLInputElement>) => void }} props used for the component
+ * @return {JSX.Element} the JSX.Element
+ */
 export default function Search({ newSearchResults, searchResults, index, setArrowKeys, handleFocus, handleBlur }) {
 
   const handleText = e => newSearchResults(e.target.value)
